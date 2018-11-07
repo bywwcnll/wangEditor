@@ -25,6 +25,7 @@
         editor.customConfig.onchange = (html) => {
           this.editorContent = html
         }
+        editor.customConfig.uploadImgShowBase64 = true
         editor.create()
       }
     }

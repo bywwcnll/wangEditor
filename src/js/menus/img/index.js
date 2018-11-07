@@ -38,8 +38,12 @@ Image.prototype = {
         const editor = this.editor
 
         // id
+        const width100px = getRandom('width-100px')
+        const width200px = getRandom('width-200px')
+        const width300px = getRandom('width-300px')
         const width30 = getRandom('width-30')
         const width50 = getRandom('width-50')
+        const width70 = getRandom('width-70')
         const width100 = getRandom('width-100')
         const delBtn = getRandom('del-btn')
 
@@ -50,8 +54,13 @@ Image.prototype = {
                 tpl: `<div>
                     <div class="w-e-button-container" style="border-bottom:1px solid #f1f1f1;padding-bottom:5px;margin-bottom:5px;">
                         <span style="float:left;font-size:14px;margin:4px 5px 0 5px;color:#333;">最大宽度：</span>
+                        <button id="${width100px}" class="left">100px</button>
+                        <button id="${width200px}" class="left">200px</button>
+                        <button id="${width300px}" class="left">300px</button>
+                        <span style="float:left;font-size:14px;margin:4px 5px 0 5px;color:#333;visibility: hidden;">最大宽度：</span>
                         <button id="${width30}" class="left">30%</button>
                         <button id="${width50}" class="left">50%</button>
+                        <button id="${width70}" class="left">70%</button>
                         <button id="${width100}" class="left">100%</button>
                     </div>
                     <div class="w-e-button-container">
@@ -60,12 +69,52 @@ Image.prototype = {
                 </div>`,
                 events: [
                     {
+                        selector: '#' + width100px,
+                        type: 'click',
+                        fn: () => {
+                            const $img = editor._selectedImg
+                            if ($img) {
+                                $img.css('width', '100px')
+                                $img.css('height', 'auto')
+                            }
+                            // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
+                            return true
+                        }
+                    },
+                    {
+                        selector: '#' + width200px,
+                        type: 'click',
+                        fn: () => {
+                            const $img = editor._selectedImg
+                            if ($img) {
+                                $img.css('width', '200px')
+                                $img.css('height', 'auto')
+                            }
+                            // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
+                            return true
+                        }
+                    },
+                    {
+                        selector: '#' + width300px,
+                        type: 'click',
+                        fn: () => {
+                            const $img = editor._selectedImg
+                            if ($img) {
+                                $img.css('width', '300px')
+                                $img.css('height', 'auto')
+                            }
+                            // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
+                            return true
+                        }
+                    },
+                    {
                         selector: '#' + width30,
                         type: 'click',
                         fn: () => {
                             const $img = editor._selectedImg
                             if ($img) {
-                                $img.css('max-width', '30%')
+                                $img.css('width', $img.selector.naturalWidth * 0.3 + 'px')
+                                $img.css('height', 'auto')
                             }
                             // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
                             return true
@@ -77,7 +126,21 @@ Image.prototype = {
                         fn: () => {
                             const $img = editor._selectedImg
                             if ($img) {
-                                $img.css('max-width', '50%')
+                                $img.css('width', $img.selector.naturalWidth * 0.5 + 'px')
+                                $img.css('height', 'auto')
+                            }
+                            // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
+                            return true
+                        }
+                    },
+                    {
+                        selector: '#' + width70,
+                        type: 'click',
+                        fn: () => {
+                            const $img = editor._selectedImg
+                            if ($img) {
+                                $img.css('width', $img.selector.naturalWidth * 0.7 + 'px')
+                                $img.css('height', 'auto')
                             }
                             // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
                             return true
@@ -89,7 +152,8 @@ Image.prototype = {
                         fn: () => {
                             const $img = editor._selectedImg
                             if ($img) {
-                                $img.css('max-width', '100%')
+                                $img.css('width', $img.selector.naturalWidth + 'px')
+                                $img.css('height', 'auto')
                             }
                             // 返回 true，表示该事件执行完之后，panel 要关闭。否则 panel 不会关闭
                             return true

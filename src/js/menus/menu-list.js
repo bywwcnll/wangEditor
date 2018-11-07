@@ -65,5 +65,8 @@ MenuConstructors.video = Video
 import Image from './img/index.js'
 MenuConstructors.image = Image
 
+import Fullscreen from './fullscreen/index.js'
+MenuConstructors.fullscreen = Fullscreen
+
 // 吐出所有菜单集合
 export default MenuConstructors
